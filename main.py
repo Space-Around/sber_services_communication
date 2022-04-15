@@ -1,9 +1,10 @@
 import traceback
 
+import const
 import config
+from PeerCertWSGIRequestHandler import PeerCertWSGIRequestHandler
 
 import ssl
-from PeerCertWSGIRequestHandler import PeerCertWSGIRequestHandler
 from flask import Flask, request
 
 
@@ -12,11 +13,14 @@ app = Flask(__name__)
 
 @app.route('/')
 def handler():
-    print(request.environ.keys())
-    print(dir(request.environ['SSL_CLIENT_CERT']))
-    print(request.environ['SSL_CLIENT_CERT'])
+    try:
+        client_cert = request.environ['client_cert']
 
-    return '200', 200
+        print(client_cert.get_subject())
+    except Exception as e:
+        print(traceback.format_exc())
+
+    return const.RESPONSE_STATUS_OK
 
 
 if __name__ == "__main__":
