@@ -4,16 +4,17 @@ from minio.error import S3Error
 
 def main():
     bucket_name = 'test-bucket-1'
-    endpoint_url = 'play.min.io'
-    access_key = 'Q3AM3UQ867SPQQA43P2F'
-    secret_key = 'zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG'
-    upload_file_path = '/data/img.png'
+    endpoint_url = 'minio1:9000'
+    access_key = 'minioadmin'
+    secret_key = 'minioadmin'
+    upload_file_path = './data/img.png'
     file_name = 'img.png'
 
     client = Minio(
         endpoint_url,
         access_key=access_key,
         secret_key=secret_key,
+        secure=False
     )
 
     found = client.bucket_exists(bucket_name)
