@@ -1,7 +1,7 @@
 FROM python:3.10-alpine
 
 
-RUN apk update && apk add python3-dev gcc libc-dev libffi-dev openssl
+RUN apk update && apk add python3-dev gcc libc-dev libffi-dev openssl curl
 
 COPY . /opt/mtls/
 WORKDIR /opt/mtls/
