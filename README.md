@@ -1,20 +1,30 @@
-<h1>Proxy Server</h1>
-<hr/>
+# Proxy Server
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-<h2>Setup:</h2>
-1. ```chmod +x setup.sh```
-2. ```./setup.sh```
+Providing communication between Keycloak, SberECM core and S3 server (Minio) via proxy server in Docker. Auth to proxy server via mTLS protocol.
 
-<h2>Start:</h2>
-```./start.sh```
-<hr/>
-<h2>Test communications between services:</h2>
+---
+
+## Installation
+```sh 
+cd path/to/project
+chmod +x setup.sh
+./setup.sh
+```
+
+### Start up
+```sh 
+./start.sh
+```
+---
+## Test communications between services
 
 Check folder ```/tests``` and run Python scripts for testing
 
-<h3>cURL test:</h3>
-<h4>Get list buckets</h4>
-```
+
+##### Get list buckets
+
+```sh
 curl --cacert certs/rootCA.pem \
     --cert certs/client2.pem \
     --key certs/client2.key \
@@ -22,7 +32,7 @@ curl --cacert certs/rootCA.pem \
     -vvv
 ```
 
-<h4>Download file</h4>
+##### Download file
 ```
 curl --cacert certs/rootCA.pem \
     --cert certs/client2.pem \
@@ -31,9 +41,11 @@ curl --cacert certs/rootCA.pem \
     --output /opt/mtls/data/t.txt \
     -vvv
 ```
-<hr/>
+---
 
-<h2>Docker</h2>
-1. ```cd path/to/project```
-2. ```docker-compose build .```
-3. ```docker-comose up -d```
+## Docker Compose
+```sh 
+cd path/to/project
+docker-compose build
+docker-comose up -d
+```
