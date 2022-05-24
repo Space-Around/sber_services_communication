@@ -13,6 +13,7 @@ import requests
 from flask import Flask, request, Response, send_file, jsonify, after_this_request
 
 app = Flask(__name__)
+
 logging.basicConfig(filename=config.LOGS_PATH, level=logging.DEBUG)
 
 

@@ -15,4 +15,4 @@ GET_OBJECT_ENDPOINT = '/api/v1/bucket/<bucket>/object/<object>'
 
 DOWNLOAD_DIR = '/opt/mtls/data/'
 
-LOGS_PATH = '/logs/debug.log'
+LOGS_PATH = '/opt/mtls/logs/debug.log'
