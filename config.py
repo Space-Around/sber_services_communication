@@ -16,3 +16,9 @@ GET_OBJECT_ENDPOINT = '/api/v1/bucket/<bucket>/object/<object>'
 DOWNLOAD_DIR = '/opt/mtls/data/'
 
 LOGS_PATH = '/opt/mtls/logs/debug.log'
+
+KEYCLOAK_URL = 'http://keycloak:8080/realms/ssl-realm/protocol/openid-connect/token'
+KEYCLOAK_GRANT_TYPE = 'password'
+KEYCLOAK_USERNAME = 'myuser'
+KEYCLOAK_PASSWORD = '1234'
+KEYCLOAK_CLIENT_ID = 'myclient'

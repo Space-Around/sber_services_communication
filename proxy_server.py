@@ -25,6 +25,19 @@ def list_buckets() -> Union[tuple[Response, int], tuple[str, int]]:
         # client_cert = request.environ['client_cert']
 
         # request to get jwt from keycloak
+        data = {
+            'grant_type': config.KEYCLOAK_GRANT_TYPE,
+            'username': config.KEYCLOAK_USERNAME,
+            'password': config.KEYCLOAK_PASSWORD,
+            'client_id': config.KEYCLOAK_CLIENT_ID,
+        }
+
+        response = requests.post(
+            url=config.KEYCLOAK_URL,
+            data=data
+        )
+
+        access_token = response.json()['access_token']
 
         # request to check if user has access to file from SberECM Core
 
