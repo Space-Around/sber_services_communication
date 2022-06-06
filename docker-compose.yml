@@ -81,7 +81,17 @@ services:
 
   keycloak:
     image: quay.io/keycloak/keycloak:18.0.0
-    command: start-dev
+    command: start-dev -Dkeycloak.profile.feature.token_exchange=enabled -Dkeycloak.profile.feature.admin_fine_grained_authz=enabled
+    volumes:
+      - /cert/client1.csr:/opt/certs/client1.csr
+      - /cert/client1.key:/opt/certs/client1.key
+      - /cert/client1.pem:/opt/certs/client1.pem
+      - /cert/client2.csr:/opt/certs/client2.csr
+      - /cert/client2.key:/opt/certs/client2.key
+      - /cert/client2.pem:/opt/certs/client2.pem
+      - /cert/rootCA.key:/opt/certs/rootCA.key
+      - /cert/rootCA.pem:/opt/certs/rootCA.pem
+      - /cert/serial:/opt/certs/serial
     environment:
       DB_VENDOR: POSTGRES
       DB_ADDR: postgres
@@ -93,6 +103,8 @@ services:
       KEYCLOAK_PASSWORD: Pa55w0rd
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
+      KEYCLOAK_HTTPS_CERTIFICATE_FILE: /opt/certs/client2.pem
+      KEYCLOAK_HTTPS_CERTIFICATE_KEY_FILE: /opt/certs/client2.key
     ports:
       - 8080:8080
     depends_on:

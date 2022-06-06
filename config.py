@@ -17,8 +17,18 @@ DOWNLOAD_DIR = '/opt/mtls/data/'
 
 LOGS_PATH = '/opt/mtls/logs/debug.log'
 
-KEYCLOAK_URL = 'http://keycloak:8080/realms/ssl-realm/protocol/openid-connect/token'
-KEYCLOAK_GRANT_TYPE = 'password'
-KEYCLOAK_USERNAME = 'myuser'
+KEYCLOAK_URL = 'http://keycloak:8080/realms/master/protocol/openid-connect/token'
+
+CLEINT_CREDITIONAL = 'CLEINT_CREDITIONAL'
+TOKEN_EXCHANGE = 'TOKEN_EXCHANGE'
+
+KEYCLOAK_GRANT_TYPE = {
+    'CLEINT_CREDITIONAL': 'client_credentials',
+    'TOKEN_EXCHANGE': 'urn:ietf:params:oauth:grant-type:token-exchange',
+}
+
+KEYCLOAK_USERNAME = 'test'
 KEYCLOAK_PASSWORD = '1234'
 KEYCLOAK_CLIENT_ID = 'myclient'
+KEYCLOAK_CLIENT_SECRET = '3ZP9vW1oUmPN0i2QGh2G50XwBRSvAza4'
+KEYCLOAK_REQUESTED_SUBJECT = 'test'

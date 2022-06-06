@@ -5,6 +5,7 @@ from typing import Union
 
 import const
 import config
+import utils
 from PeerCertWSGIRequestHandler import PeerCertWSGIRequestHandler
 
 import ssl
@@ -25,19 +26,8 @@ def list_buckets() -> Union[tuple[Response, int], tuple[str, int]]:
         # client_cert = request.environ['client_cert']
 
         # request to get jwt from keycloak
-        data = {
-            'grant_type': config.KEYCLOAK_GRANT_TYPE,
-            'username': config.KEYCLOAK_USERNAME,
-            'password': config.KEYCLOAK_PASSWORD,
-            'client_id': config.KEYCLOAK_CLIENT_ID,
-        }
-
-        response = requests.post(
-            url=config.KEYCLOAK_URL,
-            data=data
-        )
-
-        access_token = response.json()['access_token']
+        access_token = utils.get_subject_jwt(config.KEYCLOAK_REQUESTED_SUBJECT)
+        # access_token = utils.get_subject_jwt(client_cert)
 
         # request to check if user has access to file from SberECM Core
 
@@ -71,6 +61,8 @@ def get_object(bucket: str, object: str) -> Union[tuple[Response, int], tuple[st
         # client_cert = request.environ['client_cert']
 
         # request to get jwt from keycloak
+        access_token = utils.get_subject_jwt(config.KEYCLOAK_REQUESTED_SUBJECT)
+        # access_token = utils.get_subject_jwt(client_cert)
 
         # request to check if user has access to file from SberECM Core
 
